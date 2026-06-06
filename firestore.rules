@@ -1,0 +1,70 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Auth helpers
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // Collection Security Rules
+
+    match /users/{userId} {
+      allow read: if true; // Public listings or verification
+      allow write: if isSignedIn(); // User creation / maintenance
+    }
+
+    match /products/{productId} {
+      allow read: if true; // Public catalog access
+      allow write: if isSignedIn(); // Logged in merchants writing products
+    }
+
+    match /sellers/{sellerId} {
+      allow read: if true; // Public merchant profiles
+      allow write: if isSignedIn(); // Registered merchants updating options
+    }
+
+    match /orders/{orderId} {
+      allow read, write: if isSignedIn(); // Order lifecycle updates
+    }
+
+    match /otpRequests/{otpId} {
+      allow read, write: if true; // Unauthenticated OTP validation flow
+    }
+
+    match /chats/{chatId} {
+      allow read, write: if isSignedIn(); // Instant communications
+    }
+
+    match /announcements/{announcementId} {
+      allow read: if true; // Broadcast stream
+      allow write: if isSignedIn(); // Merchant broadcasts
+    }
+
+    match /qas/{qaId} {
+      allow read: if true; // Public comments/QA view
+      allow write: if isSignedIn(); // Comments submission
+    }
+
+    match /disputes/{disputeId} {
+      allow read, write: if isSignedIn(); // Refund filing records
+    }
+
+    match /deliveryAgents/{agentId} {
+      allow read, write: if isSignedIn(); // Delivery service partner dispatch
+    }
+
+    match /system/{docId} {
+      allow read: if true; // Public system configurations (branding, broadcast text)
+      allow write: if isSignedIn(); // Admin settings management
+    }
+  }
+}

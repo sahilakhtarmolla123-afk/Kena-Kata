@@ -1,0 +1,214 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profiles including customers, sellers, admin, and delivery agents",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "mobile": { "type": "string" },
+        "profilePhoto": { "type": "string" },
+        "address": { "type": "string" },
+        "state": { "type": "string" },
+        "district": { "type": "string" },
+        "password": { "type": "string" },
+        "followingSellers": { "type": "array" },
+        "role": { "type": "string", "enum": ["CUSTOMER", "SELLER", "ADMIN", "DELIVERY_AGENT"] },
+        "sellerId": { "type": "string" },
+        "deliveryAgentId": { "type": "string" },
+        "interests": { "type": "array" },
+        "reviewCount": { "type": "number" }
+      },
+      "required": ["id", "name", "mobile", "password"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Product catalog items created by merchants",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "sellerId": { "type": "string" },
+        "sellerName": { "type": "string" },
+        "companyName": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "category": { "type": "string" },
+        "mrp": { "type": "number" },
+        "price": { "type": "number" },
+        "stock": { "type": "number" },
+        "minOrderQuantity": { "type": "number" },
+        "images": { "type": "array" },
+        "videoUrl": { "type": "string" },
+        "rating": { "type": "number" },
+        "reviewCount": { "type": "number" }
+      },
+      "required": ["id", "sellerId", "name", "price"]
+    },
+    "Seller": {
+      "title": "Seller",
+      "description": "Seller shop credentials and configuration",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "shopName": { "type": "string" },
+        "ownerName": { "type": "string" },
+        "mobile": { "type": "string" },
+        "password": { "type": "string" },
+        "logo": { "type": "string" },
+        "banner": { "type": "string" },
+        "rating": { "type": "number" },
+        "totalSales": { "type": "number" },
+        "followersCount": { "type": "number" },
+        "isActive": { "type": "boolean" },
+        "isVerified": { "type": "boolean" },
+        "joinDate": { "type": "string" },
+        "commissionRate": { "type": "number" }
+      },
+      "required": ["id", "shopName", "ownerName", "mobile"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer order records",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "customerId": { "type": "string" },
+        "customerName": { "type": "string" },
+        "customerMobile": { "type": "string" },
+        "sellerId": { "type": "string" },
+        "sellerName": { "type": "string" },
+        "items": { "type": "array" },
+        "paymentMethod": { "type": "string", "enum": ["COD", "ONLINE"] },
+        "deliveryCharge": { "type": "number" },
+        "itemTotal": { "type": "number" },
+        "finalTotal": { "type": "number" },
+        "status": { "type": "string" },
+        "deliveryAgentId": { "type": "string" }
+      },
+      "required": ["id", "customerId", "sellerId", "items", "finalTotal", "status"]
+    },
+    "OtpRequest": {
+      "title": "OtpRequest",
+      "description": "OTP verification requests for authentication",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "mobile": { "type": "string" },
+        "otp": { "type": "string" },
+        "requestedAt": { "type": "string" },
+        "role": { "type": "string" }
+      },
+      "required": ["id", "mobile", "otp", "requestedAt"]
+    },
+    "ChatMessage": {
+      "title": "ChatMessage",
+      "description": "Real-time communication logs",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "senderId": { "type": "string" },
+        "senderRole": { "type": "string" },
+        "senderName": { "type": "string" },
+        "message": { "type": "string" },
+        "timestamp": { "type": "string" }
+      },
+      "required": ["id", "senderId", "message", "timestamp"]
+    },
+    "Announcement": {
+      "title": "Announcement",
+      "description": "Seller broadcast postings",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "sellerId": { "type": "string" },
+        "sellerName": { "type": "string" },
+        "text": { "type": "string" },
+        "timestamp": { "type": "string" }
+      },
+      "required": ["id", "sellerId", "text", "timestamp"]
+    },
+    "ProductQA": {
+      "title": "ProductQA",
+      "description": "Product questions and answers",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "productId": { "type": "string" },
+        "question": { "type": "string" },
+        "answers": { "type": "array" }
+      },
+      "required": ["id", "productId", "question"]
+    },
+    "Dispute": {
+      "title": "Dispute",
+      "description": "Customer order priority disputes",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "orderId": { "type": "string" },
+        "customerId": { "type": "string" },
+        "sellerId": { "type": "string" },
+        "reason": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "required": ["id", "orderId", "customerId", "sellerId", "reason", "status"]
+    },
+    "DeliveryAgent": {
+      "title": "DeliveryAgent",
+      "description": "Registered delivery partners",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "mobile": { "type": "string" },
+        "password": { "type": "string" },
+        "status": { "type": "string" },
+        "sellerId": { "type": "string" }
+      },
+      "required": ["id", "name", "mobile", "password", "status"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Stores user profiles including active customers and registered parties"
+    },
+    "products/{productId}": {
+      "schema": "Product",
+      "description": "Catalog items and specifications managed by sellers"
+    },
+    "sellers/{sellerId}": {
+      "schema": "Seller",
+      "description": "Seller merchant shops and configuration options"
+    },
+    "orders/{orderId}": {
+      "schema": "Order",
+      "description": "Customer platform purchases and logistic timelines"
+    },
+    "otpRequests/{otpId}": {
+      "schema": "OtpRequest",
+      "description": "Pending and verified login OTP challenges"
+    },
+    "chats/{chatId}": {
+      "schema": "ChatMessage",
+      "description": "Global support conversation transcripts between merchants and buyers"
+    },
+    "announcements/{announcementId}": {
+      "schema": "Announcement",
+      "description": "Seller broadcast postings liked by followers"
+    },
+    "qas/{qaId}": {
+      "schema": "ProductQA",
+      "description": "Seller and buyer interactive question chains"
+    },
+    "disputes/{disputeId}": {
+      "schema": "Dispute",
+      "description": "Claims filed by customers for refund disputes"
+    },
+    "deliveryAgents/{agentId}": {
+      "schema": "DeliveryAgent",
+      "description": "Logistics and dispatch agents registered with sellers"
+    }
+  }
+}

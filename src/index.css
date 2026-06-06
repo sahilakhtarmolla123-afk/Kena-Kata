@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&family=Poppins:wght@400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Poppins", sans-serif;
+  --color-brand-blue: #020817;
+  --color-brand-orange: #FF6B00;
+  --color-brand-light: #0d1527;
+  
+  /* Overriding default Tailwind colors at the theme level to seamlessly dark-out the app layout containers! */
+  --color-white: #0f172a;
+  --color-slate-50: #020817;
+  --color-slate-100: #1e293b;
+  --color-slate-150: #2a354f;
+  --color-slate-200: #334155;
+  --color-slate-300: #475569;
+  --color-slate-400: #64748b;
+  --color-slate-500: #94a3b8;
+  --color-slate-600: #94a3b8;
+  --color-slate-650: #cbd5e1;
+  --color-slate-800: #cbd5e1;
+  --color-slate-900: #f8fafc;
+  --color-slate-950: #ffffff;
+}
+
+@layer base {
+  body {
+    background-color: #020817 !important;
+    color: #f1f5f9 !important;
+    font-family: var(--font-sans);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: #ffffff !important;
+  }
+}
+
+/* Force dark overrides for Sophisticated Dark theme */
+div.bg-slate-50, div.bg-gray-50, select.bg-slate-50, input.bg-slate-50 {
+  background-color: #020817 !important;
+  color: #f8fafc !important;
+}
+
+div.bg-white, form.bg-white, section.bg-white, main.bg-white {
+  background-color: #0b1329 !important;
+  color: #f8fafc !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Let's make sure text elements remain highly visible and elegant */
+.text-slate-800, .text-slate-900, .text-slate-700, .text-gray-800, .text-gray-900, .text-[#0a2f64] {
+  color: #f8fafc !important;
+}
+
+.text-slate-550, .text-slate-500, .text-slate-600, .text-gray-500, .text-gray-600 {
+  color: #94a3b8 !important;
+}
+
+.border-slate-100, .border-slate-200, .border-gray-100, .border-gray-200 {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Force clean scrollbars & styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #020817;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF6B00;
+}
+
+/* Custom glossy and shimmer details */
+.glossy-card {
+  background: rgba(11, 19, 41, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 107, 0, 0.15) !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glossy-card:hover {
+  border-color: rgba(255, 107, 0, 0.45) !important;
+  box-shadow: 0 15px 35px -5px rgba(255, 107, 0, 0.25) !important;
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #091124 25%, #16223f 50%, #091124 75%) !important;
+  background-size: 200% 100%;
+  animation: loading-shimmer 1.5s infinite;
+}
+
+@keyframes loading-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Custom scrollbar hides */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Extra premium overrides */
+input, select, textarea {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 12px;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #FF6B00 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(255, 107, 0, 0.2) !important;
+}
+
+input::placeholder {
+  color: #475569 !important;
+}
+
+/* Options tag styling helper */
+option {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+}
+
+/* Force dark header style */
+header {
+  background-color: #0d1527 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Buttons glow styling */
+.btn-premium {
+  background: #FF6B00 !important;
+  color: #ffffff !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.025em;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s ease-out;
+  box-shadow: 0 4px 15px rgba(255, 107, 0, 0.25);
+}
+
+.btn-premium:hover {
+  background: #ff7c1a !important;
+  box-shadow: 0 6px 20px rgba(255, 107, 0, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Card highlights and states styling */
+.text-brand-orange {
+  color: #FF6B00 !important;
+}
+.bg-brand-orange {
+  background-color: #FF6B00 !important;
+}
+.hover\:bg-brand-orange:hover {
+  background-color: #FF6B00 !important;
+}
+
+/* Extra status fixes */
+.bg-blue-50 {
+  background-color: rgba(56, 189, 248, 0.1) !important;
+  color: #38bdf8 !important;
+}
+.bg-green-50 {
+  background-color: rgba(16, 185, 129, 0.1) !important;
+  color: #10b981 !important;
+}
+.bg-orange-50 {
+  background-color: rgba(249, 115, 22, 0.1) !important;
+  color: #f97316 !important;
+}
+.bg-red-50 {
+  background-color: rgba(239, 68, 68, 0.1) !important;
+  color: #ef4444 !important;
+}
+
+.text-brand-blue {
+  color: #a5b4fc !important;
+}
+
+/* Additional layout & aesthetic support */
+.shadow-xl, .shadow-md, .shadow-lg, .shadow-sm, .shadow {
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Make sure alert blocks match dark aesthetic */
+.alert-bar {
+  background-color: #1e1b4b !important;
+  color: #e0e7ff !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}

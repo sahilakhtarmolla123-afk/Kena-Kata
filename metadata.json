@@ -1,0 +1,9 @@
+{
+  "name": "Kena Kata",
+  "description": "A comprehensive, multi-seller e-commerce super app with Customer, Seller, Admin, and Delivery Agent portals, live OTP workflows, real-time analytics, and Flipkart-level UI.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
